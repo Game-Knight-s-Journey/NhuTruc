@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2D Map Example</title>
+<style>
+  canvas { border: 1px solid black; }
+</style>
+</head>
+<body>
+<canvas id="game" width="320" height="320"></canvas>
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+// Mảng 2D thể hiện map
+// 0 = cỏ, 1 = tường
+const mapData = [
+  [0, 0, 1, 1, 0, 0, 0, 0],
+  [0, 0, 1, 1, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0],
+  [1, 1, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0],
+  [0, 1, 1, 0, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]
+];
+
+// Kích thước mỗi tile
+const tileSize = 40;
+
+// Vẽ bản đồ
+for (let row = 0; row < mapData.length; row++) {
+  for (let col = 0; col < mapData[row].length; col++) {
+    if (mapData[row][col] === 0) {
+      ctx.fillStyle = 'green'; // cỏ
+    } else if (mapData[row][col] === 1) {
+      ctx.fillStyle = 'gray';  // tường
+    }
+    ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
+  }
+}
+</script>
+</body>
+</html>
